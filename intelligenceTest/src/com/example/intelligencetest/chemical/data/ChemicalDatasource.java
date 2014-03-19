@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -37,25 +38,77 @@ public class ChemicalDatasource {
 	
 	
 	public Chemical getChemicalById(String id) {
-		JSONArray jArray = null;
+		JSONArray jArray;
+		String filename = "ica.php";
+		String result = getResultFromRequest(id, filename, "one");
+		
+		try {
+			JSONArray array = new JSONArray(result);
+			JSONObject object = array.getJSONObject(0);
+			jArray = object.getJSONArray("chem");
+			JSONObject json_data = null;
+	      for(int i=0;i<jArray.length();i++){
+	    	  json_data = jArray.getJSONObject(i);
+	          	currentChemical = createChemicalFromJSON(json_data);
+	          	createDatasheetFromJSON(json_data);	
+	         }
+	      }
+	      catch(JSONException JSONException){
+	       Log.i(LOGTAG , "No data found: + " + JSONException.toString());
+	      } catch (ParseException parseException) {
+	    	  parseException.printStackTrace();
+	      }
+		
+		return currentChemical;
+	}
+	
+	public List<Chemical> getListOfChemicals() {
+		
+		JSONArray jArray;
+		List<Chemical> list = new ArrayList<Chemical>();
+		
+		try {
+			String filename = "ica.php";
+			String result = getResultFromRequest(null, filename, "all");
+			JSONArray array = new JSONArray(result);
+			JSONObject object = array.getJSONObject(0);
+			jArray = object.getJSONArray("chem");
+			JSONObject json_data = null;
+	      for(int i=0;i<jArray.length();i++){
+	    	  json_data = jArray.getJSONObject(i);
+	    	  list.add(createChemicalFromJSON(json_data));
+	    	  Log.i(LOGTAG, "Added to chemical-list: " + createChemicalFromJSON(json_data).getName());
+	         }
+	      }
+	      catch(JSONException JSONException){
+	       Log.i(LOGTAG , "No data found: + " + JSONException.toString());
+	      } catch (ParseException parseException) {
+	    	  parseException.printStackTrace();
+	      }
+		
+		return list;
+	}
+
+
+	private String getResultFromRequest(String id, String filename, String action) {
 
 		String result = null;
-
 		StringBuilder sb = null;
-
 		InputStream is = null;
-
 
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		try{
-			 nameValuePairs.add(new BasicNameValuePair("chemid", id.trim()));
-			 HttpClient httpclient = new DefaultHttpClient();
-			 
-			 HttpPost httppost = new HttpPost("http://home.uia.no/jorgel11/ICA/getAllChemInfo.php");
-			 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			 HttpResponse response = httpclient.execute(httppost);
-			 HttpEntity entity = response.getEntity();
-			 is = entity.getContent();
+			if(id != null) {
+				 nameValuePairs.add(new BasicNameValuePair("chemid", id.trim()));
+			}
+			nameValuePairs.add(new BasicNameValuePair("action", action));
+			
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost("http://home.uia.no/jorgel11/ICA/" + filename);
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			is = entity.getContent();
 		}catch(Exception e){
 	         Log.e("log_tag", "Error in http connection"+e.toString());
 		}
@@ -76,26 +129,7 @@ public class ChemicalDatasource {
        	} catch(Exception exception) {
             Log.e("log_tag", "Error converting result "+exception.toString());
         }
-		
-		try {
-			JSONArray array = new JSONArray(result);
-			JSONObject object = array.getJSONObject(0);
-			jArray = object.getJSONArray("chem");
-			JSONObject json_data = null;
-	      for(int i=0;i<jArray.length();i++){
-	    	  json_data = jArray.getJSONObject(i);
-	          	createChemicalFromJSON(json_data);
-	          	createDatasheetFromJSON(json_data);
-	          	
-	         }
-	      }
-	      catch(JSONException JSONException){
-	       Log.i(LOGTAG , "No data found: + " + JSONException.toString());
-	      } catch (ParseException parseException) {
-	    	  parseException.printStackTrace();
-	      }
-		
-		return currentChemical;
+		return result;
 	}
 	
 	
@@ -130,16 +164,17 @@ public class ChemicalDatasource {
 		}
 	}
 	
-	private void createChemicalFromJSON(JSONObject json_data) {
-		currentChemical = new Chemical();
+	private Chemical createChemicalFromJSON(JSONObject json_data) {
+		Chemical c = new Chemical();
 		try {
-			currentChemical.setName(json_data.getString("chem_name"));
-			currentChemical.setType(json_data.getString("chem_type"));
-			currentChemical.setChemicalId(json_data.getString("chem_id"));
+			c.setName(json_data.getString("chem_name"));
+			c.setType(json_data.getString("chem_type"));
+			c.setChemicalId(json_data.getString("chem_id"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return c;
 	}
 	
 }

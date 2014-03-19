@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.intelligencetest.R;
 import com.example.intelligencetest.library.Library;
@@ -31,21 +32,26 @@ public class GridMenu extends Fragment
     	            R.layout.gridview, container, false);
     	        
         GridView gridView = (GridView)view.findViewById(R.id.gridview);
-        gridView.setAdapter(new MyAdapter(getActivity()));
         gridView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-               // Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
-                
-                switch(position){
-                case 0: Intent i = new Intent(getActivity(), ScanActivity.class);
-        		startActivity(i);;
+        	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        		//Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
         		
-                case 1: startActivity(new Intent(getActivity(), Library.class));
-                break;
-                
-                }
-            }
+        		switch(position){
+        		
+        		case 0: startActivity(new Intent(getActivity(), ScanActivity.class));
+        			break;
+        		
+        		case 1: startActivity(new Intent(getActivity(), Library.class));
+        			break;
+        		
+        		default:
+        			break;
+        			
+        		}
+        	}
         });
+        gridView.setAdapter(new MyAdapter(getActivity()));
+        
 		return gridView;
     }
 
