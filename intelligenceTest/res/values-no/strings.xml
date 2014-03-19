@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">intelligenceTest</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="title_section1">Seksjon 1</string>
+    <string name="title_section2">Seksjon 2</string>
+    <string name="title_section3">Seksjon 3</string>
+    <string name="scan_only_qr_codes">Skann bare QR</string>
+    <string name="scan">Skann</string>
+
+</resources>

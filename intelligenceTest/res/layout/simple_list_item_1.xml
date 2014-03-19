@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:padding="5dp">
+
+    <!--  ListRow Left sied Thumbnail image -->
+    <LinearLayout android:id="@+id/person_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
+ 
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/ic_contact_picture"/>
+ 
+    </LinearLayout>
+    
+    <TextView 
+        android:id="@+id/personName"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/person_thumbnail"
+        android:layout_alignTop="@+id/person_thumbnail"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        />
+    
+    <TextView 
+        android:id="@+id/personAge"
+        android:layout_toRightOf="@+id/person_thumbnail"
+        android:layout_below="@id/personName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    
+     <!-- Rightend Arrow -->
+     <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_radio_on_holo"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

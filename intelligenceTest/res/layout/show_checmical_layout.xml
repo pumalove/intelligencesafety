@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/chemical_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Formidor"
+                android:textSize="40sp"
+                android:layout_marginBottom="5dp"/>
+
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            
+            <TextView
+                android:clickable="true"
+                android:id="@+id/callEmergencyCell"
+                android:background="@drawable/layout_selector"
+                android:text="Call Emergency Number"
+                android:layout_weight="1" 
+                android:padding="20dip" 
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvpdf"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:background="@drawable/layout_selector"
+                android:text="Row 3 column 2"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="20dip" 
+                android:gravity="center"/>
+        </TableRow>
+        
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"/>
+
+
+
+        <RelativeLayout
+            android:id="@+id/firstaid_measures_click"
+            android:paddingTop="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/FAMeasures"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="First Aid Measures"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigation_next_item"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+        <View android:layout_width="fill_parent"
+            android:layout_height="10dp"/>
+        
+        <RelativeLayout
+            android:id="@+id/firefighting_measures_click"
+            android:paddingTop="15dp"
+            android:clickable="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:background="@drawable/layout_selector"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Fire Fighting Measures"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:src="@drawable/ic_navigation_next_item"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

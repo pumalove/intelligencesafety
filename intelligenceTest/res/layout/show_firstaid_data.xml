@@ -1,0 +1,124 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<RelativeLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/firstaid_green"
+		android:gravity="center">
+
+	    <ImageView
+	        android:layout_width="wrap_content"
+	        android:layout_height="42dp"
+	        android:layout_gravity="center"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginBottom="5dp"
+	        
+	        android:src="@drawable/firstaid_fixed" />
+	    
+	</RelativeLayout>
+
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp">
+	    
+        <TextView 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:text="On Skin Contact:"
+            android:textColor="@color/firstaid_green"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"/>
+
+        
+        <TextView
+            android:id="@+id/firstaid_onSkinContact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        	android:layout_marginBottom="2dp"/>        
+        </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp">
+	    
+        <TextView 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:text="On Eye Contact:"
+            android:textColor="@color/firstaid_green"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"/>
+
+        
+        <TextView
+            android:id="@+id/firstaid_onEyeContact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        	android:layout_marginBottom="2dp"/>        
+        </LinearLayout>
+    
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp">
+	    
+        <TextView 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:text="On Ingestion"
+            android:textColor="@color/firstaid_green"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"/>
+
+        
+        <TextView
+            android:id="@+id/firstaid_oningestion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        	android:layout_marginBottom="2dp"/>        
+        </LinearLayout>
+        
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp">
+	    
+        <TextView 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:text="If Inhaled"
+            android:textColor="@color/firstaid_green"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"/>
+
+        
+        <TextView
+            android:id="@+id/firstaid_ifInhaled"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        	android:layout_marginBottom="2dp"/>        
+        </LinearLayout>
+    
+    
+     
+    </LinearLayout>

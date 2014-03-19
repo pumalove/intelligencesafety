@@ -1,0 +1,125 @@
+﻿Merge remote-tracking branch 'origin/Kristian' into pumalove
+
+Conflicts:
+	intelligenceTest/gen/com/applidium/headerlistview/R.java
+	intelligenceTest/gen/com/example/intelligencetest/R.java
+	intelligenceTest/src/com/example/intelligencetest/MainActivity.java
+	intelligenceTest/src/com/example/intelligencetest/persons/PersonDatasource.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch pumalove
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	deleted:    Treningslogg/AndroidManifest.xml
+#	deleted:    Treningslogg/assets/fonts/KozGoPro-Bold.otf
+#	deleted:    Treningslogg/assets/fonts/KozGoPro-ExtraLight.otf
+#	deleted:    Treningslogg/assets/fonts/KozGoPro-Medium.otf
+#	deleted:    Treningslogg/gen/no/pumalove/treningslogg/BuildConfig.java
+#	deleted:    Treningslogg/gen/no/pumalove/treningslogg/R.java
+#	deleted:    Treningslogg/ic_launcher-web.png
+#	deleted:    Treningslogg/proguard-project.txt
+#	deleted:    Treningslogg/project.properties
+#	deleted:    Treningslogg/res/drawable-hdpi/add200.png
+#	deleted:    Treningslogg/res/drawable-hdpi/avbryt.png
+#	deleted:    Treningslogg/res/drawable-hdpi/bakgrunn.png
+#	deleted:    Treningslogg/res/drawable-hdpi/bibliotek200.png
+#	deleted:    Treningslogg/res/drawable-hdpi/ferdig.png
+#	deleted:    Treningslogg/res/drawable-hdpi/ic_launcher.png
+#	deleted:    Treningslogg/res/drawable-hdpi/kettlebellsort.gif
+#	deleted:    Treningslogg/res/drawable-hdpi/list200.png
+#	deleted:    Treningslogg/res/drawable-hdpi/logg.jpg
+#	deleted:    Treningslogg/res/drawable-hdpi/loggut.png
+#	deleted:    Treningslogg/res/drawable-hdpi/loggut200.png
+#	deleted:    Treningslogg/res/drawable-hdpi/shaker.jpg
+#	deleted:    Treningslogg/res/drawable-mdpi/add200.png
+#	deleted:    Treningslogg/res/drawable-mdpi/ic_launcher.png
+#	deleted:    Treningslogg/res/drawable-mdpi/list200.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/add200.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/bibliotek200.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/filled_roundededges_box_dark.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/ic_launcher.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/list200.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/logginn600.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/loggut200.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/registrer600.png
+#	deleted:    Treningslogg/res/drawable-xhdpi/texture.jpg
+#	deleted:    Treningslogg/res/drawable-xxhdpi/avbryt.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/bibliotek.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/ic_launcher.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/leggtil.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/leggtilknapp.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/line.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logginn.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/loggut.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logo.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logobibliotek.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logoleggtil.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logookter.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logoreg.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/logoslim.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/pluss.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/refreshicon.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/regbruker.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/registrer.png
+#	deleted:    Treningslogg/res/drawable-xxhdpi/vistrening.png
+#	deleted:    Treningslogg/res/layout/activity_main.xml
+#	deleted:    Treningslogg/res/layout/addovelse.xml
+#	deleted:    Treningslogg/res/layout/all_products.xml
+#	deleted:    Treningslogg/res/layout/bibliotek.xml
+#	deleted:    Treningslogg/res/layout/customdailog.xml
+#	deleted:    Treningslogg/res/layout/customdailog_addovelse.xml
+#	deleted:    Treningslogg/res/layout/lastopp.xml
+#	deleted:    Treningslogg/res/layout/list_item.xml
+#	deleted:    Treningslogg/res/layout/mainmenu.xml
+#	deleted:    Treningslogg/res/layout/reguser.xml
+#	deleted:    Treningslogg/res/layout/row.xml
+#	deleted:    Treningslogg/res/layout/single_list_item_bib.xml
+#	deleted:    Treningslogg/res/layout/single_list_item_view.xml
+#	deleted:    Treningslogg/res/layout/sqlview.xml
+#	deleted:    Treningslogg/res/layout/userpage.xml
+#	deleted:    Treningslogg/res/layout/vis_ovelser.xml
+#	deleted:    Treningslogg/res/menu/main.xml
+#	deleted:    Treningslogg/res/values-sw600dp/dimens.xml
+#	deleted:    Treningslogg/res/values-sw720dp-land/dimens.xml
+#	deleted:    Treningslogg/res/values-v11/styles.xml
+#	deleted:    Treningslogg/res/values-v14/styles.xml
+#	deleted:    Treningslogg/res/values/dimens.xml
+#	deleted:    Treningslogg/res/values/strings.xml
+#	deleted:    Treningslogg/res/values/styles.xml
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/AddOvelse.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/Bibliotek.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/DatabaseHelper.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/Item.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/JSONParser.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/Main.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/MainMenu.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/MyAdapter.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/Ovelse.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/RegUser.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/SQLView.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/SingleBibliotek.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/SingleListItem.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/User.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/UserPage.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/VisOvelser.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/getMySQLData.java
+#	deleted:    Treningslogg/src/no/pumalove/treningslogg/lastOpp.java
+#	modified:   intelligenceTest/AndroidManifest.xml
+#	modified:   intelligenceTest/gen/com/applidium/headerlistview/R.java
+#	modified:   intelligenceTest/gen/com/example/intelligencetest/R.java
+#	new file:   intelligenceTest/res/drawable/person_header_circle.xml
+#	modified:   intelligenceTest/res/layout/person_list_section_divider.xml
+#	modified:   intelligenceTest/src/com/example/intelligencetest/MainActivity.java
+#	new file:   intelligenceTest/src/com/example/intelligencetest/persons/test.java
+#
+
