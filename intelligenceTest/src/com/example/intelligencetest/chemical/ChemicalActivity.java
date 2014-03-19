@@ -4,6 +4,8 @@ package com.example.intelligencetest.chemical;
 
 import com.example.intelligencetest.MainActivity;
 import com.example.intelligencetest.R;
+import com.example.intelligencetest.chemical.data.ChemicalDatasheet;
+import com.example.intelligencetest.chemical.data.ChemicalDatasource;
 import com.example.intelligencetest.chemical.ui.ShowFirefightingData;
 import com.example.intelligencetest.chemical.ui.ShowFirstaidData;
 import android.app.Activity;

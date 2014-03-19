@@ -60,6 +60,16 @@
             </intent-filter>
             
         </activity>
+        
+        <activity
+            android:name="com.example.intelligencetest.library.Library">
+            <intent-filter>
+                <action android:name="android.intent.action.SHOWLIBRARY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+        </activity>
       
     </application>
 

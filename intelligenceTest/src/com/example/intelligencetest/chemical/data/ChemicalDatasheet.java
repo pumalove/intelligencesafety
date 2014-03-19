@@ -1,4 +1,4 @@
-package com.example.intelligencetest.chemical;
+package com.example.intelligencetest.chemical.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;

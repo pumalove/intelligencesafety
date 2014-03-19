@@ -1,4 +1,4 @@
-package com.example.intelligencetest.chemical;
+package com.example.intelligencetest.chemical.data;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,6 +16,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.intelligencetest.chemical.Chemical;
+
 
 import android.net.ParseException;
 import android.util.Log;

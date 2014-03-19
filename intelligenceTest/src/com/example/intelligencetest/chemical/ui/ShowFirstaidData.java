@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.intelligencetest.R;
 import com.example.intelligencetest.chemical.ChemicalActivity;
-import com.example.intelligencetest.chemical.ChemicalDatasheet;
+import com.example.intelligencetest.chemical.data.ChemicalDatasheet;
 
 	public class ShowFirstaidData extends DialogFragment {
 

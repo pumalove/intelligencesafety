@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.intelligencetest.R;
+import com.example.intelligencetest.library.Library;
 
 public class GridMenu extends Fragment
 {
@@ -38,6 +39,8 @@ public class GridMenu extends Fragment
                 switch(position){
                 case 0: Intent i = new Intent(getActivity(), ScanActivity.class);
         		startActivity(i);;
+        		
+                case 1: startActivity(new Intent(getActivity(), Library.class));
                 break;
                 
                 }
