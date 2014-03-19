@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.example.intelligencetest.R;
 import com.example.intelligencetest.chemical.Chemical;
-import com.example.intelligencetest.chemical.ChemicalActivity;
 import com.example.intelligencetest.chemical.data.ChemicalDatasource;
 
 import android.app.Activity;
