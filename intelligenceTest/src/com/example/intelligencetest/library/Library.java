@@ -9,8 +9,10 @@ import com.example.intelligencetest.chemical.ChemicalActivity;
 import com.example.intelligencetest.chemical.data.ChemicalDatasource;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class Library extends Activity{
 	List<Chemical> chemList;
 	ChemicalDatasource data;
 	ListView list;
+	boolean succeeded = false;
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -94,9 +97,32 @@ public class Library extends Activity{
 	
 	public class DatabaseOperation extends AsyncTask<String, Void, String> {
 
+		 
+
 		@Override
 		protected String doInBackground(String... params) {
+			try{
 			chemList = data.getListOfChemicals();
+			succeeded = true;
+			}
+			catch(Exception e){
+				succeeded = false;
+				 Library.this.runOnUiThread(new Runnable() {
+			            public void run() {				
+							 AlertDialog.Builder builder = new AlertDialog.Builder(Library.this);
+				                builder.setTitle("Can't reach server.");
+				                builder.setMessage("Check your network connection.")  
+		                       .setCancelable(false)
+		                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		                           public void onClick(DialogInterface dialog, int id) {
+		                        	   //alert.dismiss();
+		                           }
+	                       });                     
+				                AlertDialog alert = builder.create();
+				                alert.show(); 
+			            }
+				 });
+			}
 			return "Executed";
 		}
 		
@@ -105,8 +131,13 @@ public class Library extends Activity{
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			pDialog.dismiss();
-			list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
-;
+			if (succeeded == true){
+				list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
+			}
+			else if (succeeded == false){
+				
+			}
+			
 		}
 		
 		@Override

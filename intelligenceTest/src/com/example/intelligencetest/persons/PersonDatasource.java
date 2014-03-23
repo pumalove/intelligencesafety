@@ -13,9 +13,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.net.ParseException;
 import android.util.Log;
 
@@ -120,6 +124,14 @@ public class PersonDatasource  {
 
 			 HttpPost httppost = new HttpPost("http://home.uia.no/jorgel11/ICA/getPersons.php");
 			 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			 int timeoutConnection = 3000;
+			 HttpParams httpParameters = new BasicHttpParams();
+			 HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+			 // Set the default socket timeout (SO_TIMEOUT) 
+			 // in milliseconds which is the timeout for waiting for data.
+			 int timeoutSocket = 5000;
+			 HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
 			 HttpResponse response = httpclient.execute(httppost);
 			 HttpEntity entity = response.getEntity();
 			 is = entity.getContent();
