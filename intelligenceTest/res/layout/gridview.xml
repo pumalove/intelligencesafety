@@ -1,12 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:id="@+id/gridview"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent"
-    android:columnWidth="90dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
-    android:stretchMode="columnWidth"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#DDDDDD"
     android:gravity="center"
-/>
+    >
+
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="90dp"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            />
+	</LinearLayout>
+	
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <GridView
+            android:id="@+id/gridview2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="90dp"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            />
+	</LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/linearlayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_below="@id/gridview"
+        >
+
+        <LinearLayout
+            android:id="@+id/customButton1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_buttons"
+            >
+            
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_0"
+                android:padding="5dp" />
+
+			<LinearLayout
+			    android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_gravity="center" 
+            	>
+            	
+            	<TextView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:layout_gravity="center"
+                	android:text="Yolomenyvalg1"
+                	android:textColor="#FFFFFF"
+                	android:textSize="18dp"
+                	android:layout_marginRight="40dp"
+                	/>
+			
+			</LinearLayout>
+		
+		</LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/customButton2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_buttons"
+            >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_0"
+                android:padding="5dp" />
+
+           <LinearLayout
+			    android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_gravity="center" 
+            	>
+            	
+            	<TextView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:layout_gravity="center"
+                	android:text="Yolomenyvalg1"
+                	android:textColor="#FFFFFF"
+                	android:textSize="18dp"
+                	android:layout_marginRight="40dp"
+                	/>
+			
+			</LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/customButton3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_buttons"
+            >
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/settings"
+                android:padding="5dp" />
+
+            <LinearLayout
+			    android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_gravity="center" 
+            	>
+            	
+            	<TextView
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:layout_gravity="center"
+                	android:text="@string/action_settings"
+                	android:textColor="#FFFFFF"
+                	android:textSize="18dp"
+                	android:layout_marginRight="40dp"
+                	/>
+			
+			</LinearLayout>
+
+        </LinearLayout>
+    
+    </LinearLayout>
+
+</LinearLayout>
