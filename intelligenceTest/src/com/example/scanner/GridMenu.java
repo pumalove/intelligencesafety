@@ -42,11 +42,10 @@ GridView gridView2;
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                // Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
                 switch(position) {
-                case 0: Intent i = new Intent(getActivity(), ScanActivity.class);
-        		startActivity(i);
+                case 0: startActivity(new Intent(getActivity(), ScanActivity.class));
+        		
                 break;
-                case 1: Intent i2 = new Intent(getActivity(), Library.class);
-        		startActivity(i2);
+                case 1: startActivity(new Intent(getActivity(), Library.class));
                 break;
                 
                 }
@@ -55,19 +54,18 @@ GridView gridView2;
         gridView2.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                // Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
-                switch(position) {
-                case 0: Intent a = new Intent(getActivity(), ScanActivity.class);
-        		startActivity(a);
+                
+            	switch(position) {
+            	/**
+                case 0: startActivity(new Intent(getActivity(), ScanActivity.class));
                 break;
                 
-                case 1: Intent b = new Intent(getActivity(), ScanActivity.class);
-        		startActivity(b);
+                case 1: startActivity(new Intent(getActivity(), ScanActivity.class));
                 break;
                 
-                case 2: Intent c = new Intent(getActivity(), ScanActivity.class);
-        		startActivity(c);
+                case 2: startActivity(new Intent(getActivity(), ScanActivity.class));
                 break;
-                
+                **/
                 }
             }
         });
