@@ -7,6 +7,7 @@ import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,10 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applidium.headerlistview.HeaderListView;
 import com.applidium.headerlistview.SectionAdapter;
 import com.example.intelligencetest.R;
+import com.example.intelligencetest.chemical.ChemicalActivity;
+import com.example.intelligencetest.chemical.data.ConnectionDetector;
 
 
 //Jørgen
@@ -56,26 +60,33 @@ public class PersonFragmentTest extends Fragment {
 
 		@Override
 		protected String doInBackground(String... params) {
-			try{
-				persondata.getData();
-			}
-			catch(Exception e){
-				 getActivity().runOnUiThread(new Runnable() {
-			            public void run() {				
-							 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-				                builder.setTitle("Can't reach server.");
-				                builder.setMessage("Check your network connection.")  
-		                       .setCancelable(false)
-		                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		                           public void onClick(DialogInterface dialog, int id) {
-		                        	   //alert.dismiss();
-		                           }
-	                       });                     
-				                AlertDialog alert = builder.create();
-				                alert.show(); 
-			            }
-				 });
-			}
+			ConnectionDetector cd = new ConnectionDetector(getActivity());                    
+            Boolean isInternetPresent = cd.isConnectingToInternet();                    
+            if(isInternetPresent){
+            	persondata.getData();
+            }                    
+            if(!isInternetPresent){
+
+				getActivity().runOnUiThread(new Runnable() {
+		            public void run() {				
+						 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			                builder.setTitle("Network error");
+			                builder.setMessage("Check your internet connection.")  
+	                       .setCancelable(false)
+	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                        	   //alert.dismiss();
+                           }
+                       });                     
+			                AlertDialog alert = builder.create();
+			                alert.show(); 
+		            }
+			 });
+	 
+            }
+			
+			
+			
 			
 			
 		

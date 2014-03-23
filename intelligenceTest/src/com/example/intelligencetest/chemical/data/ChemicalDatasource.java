@@ -11,18 +11,23 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.intelligencetest.chemical.Chemical;
-
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.ParseException;
 import android.util.Log;
+
+import com.example.intelligencetest.chemical.Chemical;
 
 public class ChemicalDatasource {
 	
@@ -35,6 +40,7 @@ public class ChemicalDatasource {
 	public ChemicalDatasource() {
 		//chemical = new Chemical("Formidor", "Liquid", "+47 815 49 300");
 	}
+	
 	
 	
 	public Chemical getChemicalById(String id) {

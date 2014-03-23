@@ -7,6 +7,8 @@ import com.example.intelligencetest.R;
 import com.example.intelligencetest.chemical.Chemical;
 import com.example.intelligencetest.chemical.ChemicalActivity;
 import com.example.intelligencetest.chemical.data.ChemicalDatasource;
+import com.example.intelligencetest.chemical.data.ConnectionDetector;
+import com.example.scanner.ScanActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -101,28 +103,33 @@ public class Library extends Activity{
 
 		@Override
 		protected String doInBackground(String... params) {
-			try{
-			chemList = data.getListOfChemicals();
-			succeeded = true;
-			}
-			catch(Exception e){
-				succeeded = false;
-				 Library.this.runOnUiThread(new Runnable() {
-			            public void run() {				
-							 AlertDialog.Builder builder = new AlertDialog.Builder(Library.this);
-				                builder.setTitle("Can't reach server.");
-				                builder.setMessage("Check your network connection.")  
-		                       .setCancelable(false)
-		                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		                           public void onClick(DialogInterface dialog, int id) {
-		                        	   //alert.dismiss();
-		                           }
-	                       });                     
-				                AlertDialog alert = builder.create();
-				                alert.show(); 
-			            }
-				 });
-			}
+			
+			
+			
+			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
+             Boolean isInternetPresent = cd.isConnectingToInternet();                    
+             if(isInternetPresent){
+            	 chemList = data.getListOfChemicals();	
+             }                    
+             if(!isInternetPresent){
+
+ 				Library.this.runOnUiThread(new Runnable() {
+ 		            public void run() {				
+ 						 AlertDialog.Builder builder = new AlertDialog.Builder(Library.this);
+ 			                builder.setTitle("Network error");
+ 			                builder.setMessage("Check your internet connection.")  
+ 	                       .setCancelable(false)
+ 	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                         	   //alert.dismiss();
+                            }
+                        });                     
+ 			                AlertDialog alert = builder.create();
+ 			                alert.show(); 
+ 		            }
+ 			 });
+ 	 
+             }
 			return "Executed";
 		}
 		
@@ -131,12 +138,13 @@ public class Library extends Activity{
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			pDialog.dismiss();
-			if (succeeded == true){
-				list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
-			}
-			else if (succeeded == false){
-				
-			}
+			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
+             Boolean isInternetPresent = cd.isConnectingToInternet();      	
+			 if(isInternetPresent){
+            	 list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
+             }  
+			
+			
 			
 		}
 		
