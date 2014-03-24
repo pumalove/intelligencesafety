@@ -3,16 +3,12 @@ package com.example.intelligencetest.persons;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
-
-
-import com.applidium.headerlistview.HeaderListView;
-import com.applidium.headerlistview.SectionAdapter;
-import com.example.intelligencetest.R;
-
-
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,6 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.applidium.headerlistview.HeaderListView;
+import com.applidium.headerlistview.SectionAdapter;
+import com.example.intelligencetest.R;
+import com.example.intelligencetest.chemical.ChemicalActivity;
+import com.example.intelligencetest.chemical.data.ConnectionDetector;
 
 
 //Jørgen
@@ -57,7 +60,36 @@ public class PersonFragmentTest extends Fragment {
 
 		@Override
 		protected String doInBackground(String... params) {
-			persondata.getData();
+			ConnectionDetector cd = new ConnectionDetector(getActivity());                    
+            Boolean isInternetPresent = cd.isConnectingToInternet();                    
+            if(isInternetPresent){
+            	persondata.getData();
+            }                    
+            if(!isInternetPresent){
+
+				getActivity().runOnUiThread(new Runnable() {
+		            public void run() {				
+						 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			                builder.setTitle("Network error");
+			                builder.setMessage("Check your internet connection.")  
+	                       .setCancelable(false)
+	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                        	   //alert.dismiss();
+                           }
+                       });                     
+			                AlertDialog alert = builder.create();
+			                alert.show(); 
+		            }
+			 });
+	 
+            }
+			
+			
+			
+			
+			
+		
 			return "Executed";
 		}
 		
@@ -65,10 +97,15 @@ public class PersonFragmentTest extends Fragment {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			sections = persondata.getSections();
-			personArray = persondata.getPersonArray();		
-			pDialog.dismiss();
-			list.setAdapter(adapter);
+			try{
+				sections = persondata.getSections();
+				personArray = persondata.getPersonArray();		
+				pDialog.dismiss();
+				list.setAdapter(adapter);
+			}
+			catch(Exception e){
+				
+			}
 		}
 		
 		@Override

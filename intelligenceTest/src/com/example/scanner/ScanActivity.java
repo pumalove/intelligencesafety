@@ -1,21 +1,22 @@
 package com.example.scanner;
 
+import net.sourceforge.zbar.Symbol;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.dm.zbar.android.scanner.ZBarConstants;
 import com.dm.zbar.android.scanner.ZBarScannerActivity;
 import com.example.intelligencetest.R;
 import com.example.intelligencetest.chemical.ChemicalActivity;
-
-import net.sourceforge.zbar.Symbol;
+import com.example.intelligencetest.chemical.data.ConnectionDetector;
 
 public class ScanActivity extends Activity {
 
@@ -63,9 +64,35 @@ public class ScanActivity extends Activity {
                 if (resultCode == RESULT_OK) {
                 	result = data.getStringExtra(ZBarConstants.SCAN_RESULT);
                     Toast.makeText(this, "Scan Result = " + result, Toast.LENGTH_SHORT).show();
-                    Intent newChemical = new Intent(this, ChemicalActivity.class);
-                    newChemical.putExtra("id", result);
-                    startActivity(newChemical);
+                    
+                    
+                    
+                    ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
+                    Boolean isInternetPresent = cd.isConnectingToInternet();                    
+                    if(isInternetPresent){
+                    	Intent newChemical = new Intent(this, ChemicalActivity.class);
+                        newChemical.putExtra("id", result);
+                        startActivity(newChemical);
+                    }                    
+                    if(!isInternetPresent){
+
+        				ScanActivity.this.runOnUiThread(new Runnable() {
+        		            public void run() {				
+        						 AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+        			                builder.setTitle("Network error");
+        			                builder.setMessage("Check your internet connection.")  
+        	                       .setCancelable(false)
+        	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                   public void onClick(DialogInterface dialog, int id) {
+                                	   //alert.dismiss();
+                                   }
+                               });                     
+        			                AlertDialog alert = builder.create();
+        			                alert.show(); 
+        		            }
+        			 });
+        	 
+                    }
                     
                 } else if(resultCode == RESULT_CANCELED && data != null) {
                     String error = data.getStringExtra(ZBarConstants.ERROR_INFO);

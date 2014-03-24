@@ -7,10 +7,14 @@ import com.example.intelligencetest.R;
 import com.example.intelligencetest.chemical.Chemical;
 import com.example.intelligencetest.chemical.ChemicalActivity;
 import com.example.intelligencetest.chemical.data.ChemicalDatasource;
+import com.example.intelligencetest.chemical.data.ConnectionDetector;
+import com.example.scanner.ScanActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +34,7 @@ public class Library extends Activity{
 	List<Chemical> chemList;
 	ChemicalDatasource data;
 	ListView list;
+	boolean succeeded = false;
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -94,9 +99,37 @@ public class Library extends Activity{
 	
 	public class DatabaseOperation extends AsyncTask<String, Void, String> {
 
+		 
+
 		@Override
 		protected String doInBackground(String... params) {
-			chemList = data.getListOfChemicals();
+			
+			
+			
+			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
+             Boolean isInternetPresent = cd.isConnectingToInternet();                    
+             if(isInternetPresent){
+            	 chemList = data.getListOfChemicals();	
+             }                    
+             if(!isInternetPresent){
+
+ 				Library.this.runOnUiThread(new Runnable() {
+ 		            public void run() {				
+ 						 AlertDialog.Builder builder = new AlertDialog.Builder(Library.this);
+ 			                builder.setTitle("Network error");
+ 			                builder.setMessage("Check your internet connection.")  
+ 	                       .setCancelable(false)
+ 	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                         	   //alert.dismiss();
+                            }
+                        });                     
+ 			                AlertDialog alert = builder.create();
+ 			                alert.show(); 
+ 		            }
+ 			 });
+ 	 
+             }
 			return "Executed";
 		}
 		
@@ -105,8 +138,14 @@ public class Library extends Activity{
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			pDialog.dismiss();
-			list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
-;
+			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
+             Boolean isInternetPresent = cd.isConnectingToInternet();      	
+			 if(isInternetPresent){
+            	 list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
+             }  
+			
+			
+			
 		}
 		
 		@Override
