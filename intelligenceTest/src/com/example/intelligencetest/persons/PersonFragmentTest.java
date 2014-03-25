@@ -7,21 +7,22 @@ import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.applidium.headerlistview.HeaderListView;
 import com.applidium.headerlistview.SectionAdapter;
+import com.example.intelligencetest.MainActivity;
 import com.example.intelligencetest.R;
-import com.example.intelligencetest.chemical.ChemicalActivity;
 import com.example.intelligencetest.chemical.data.ConnectionDetector;
 
 
@@ -52,11 +53,36 @@ public class PersonFragmentTest extends Fragment {
 
 		DatabaseOperation dbOper = new DatabaseOperation();
 		dbOper.execute();
+		setHasOptionsMenu(true);
+
 				
 		return list;
 	}
+	@Override
 	
-	public class DatabaseOperation extends AsyncTask<String, Void, String> {
+	public void onCreateOptionsMenu(
+	      Menu menu, MenuInflater inflater) {	
+	   inflater.inflate(R.menu.person_items, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	   // handle item selection
+	   switch (item.getItemId()) {
+	      case R.id.action_update:
+	         // do s.th.
+	    	  System.out.println("Au!");
+	    	  persondata.clearList();
+	    	  DatabaseOperation dbOper = new DatabaseOperation();
+	  		  dbOper.execute();
+	  		  adapter.notifyDataSetChanged();
+	  		
+	         return true;
+	      default:
+	         return super.onOptionsItemSelected(item);
+	   }
+	}
+	public class Refresh extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -64,6 +90,7 @@ public class PersonFragmentTest extends Fragment {
             Boolean isInternetPresent = cd.isConnectingToInternet();                    
             if(isInternetPresent){
             	persondata.getData();
+            	
             }                    
             if(!isInternetPresent){
 
@@ -85,9 +112,64 @@ public class PersonFragmentTest extends Fragment {
 	 
             }
 			
-			
-			
-			
+		
+			return "Executed";
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			try{
+				pDialog.dismiss();			
+			}
+			catch(Exception e){
+				
+			}
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();			
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Oppdaterer personlist...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+		}
+		
+		
+	}
+	
+	public class DatabaseOperation extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			ConnectionDetector cd = new ConnectionDetector(getActivity());                    
+            Boolean isInternetPresent = cd.isConnectingToInternet();                    
+            if(isInternetPresent){
+            	persondata.getData();
+            	
+            }                    
+            if(!isInternetPresent){
+
+				getActivity().runOnUiThread(new Runnable() {
+		            public void run() {				
+						 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			                builder.setTitle("Network error");
+			                builder.setMessage("Check your internet connection.")  
+	                       .setCancelable(false)
+	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                        	   //alert.dismiss();
+                           }
+                       });                     
+			                AlertDialog alert = builder.create();
+			                alert.show(); 
+		            }
+			 });
+	 
+            }
 			
 		
 			return "Executed";
@@ -99,9 +181,11 @@ public class PersonFragmentTest extends Fragment {
 			super.onPostExecute(result);
 			try{
 				sections = persondata.getSections();
-				personArray = persondata.getPersonArray();		
-				pDialog.dismiss();
+				personArray = persondata.getPersonArray();	
 				list.setAdapter(adapter);
+				pDialog.dismiss();
+				
+				
 			}
 			catch(Exception e){
 				

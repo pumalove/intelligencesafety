@@ -8,7 +8,7 @@ package com.applidium.headerlistview;
 
 public final class R {
 	public static final class drawable {
-		public static final int scrollbar_handle_holo_dark = 0x7f020015;
-		public static final int scrollbar_handle_holo_light = 0x7f020016;
+		public static final int scrollbar_handle_holo_dark = 0x7f020017;
+		public static final int scrollbar_handle_holo_light = 0x7f020018;
 	}
 }

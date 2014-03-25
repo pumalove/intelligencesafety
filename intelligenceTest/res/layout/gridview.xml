@@ -82,14 +82,13 @@
             	>
             	
             	<TextView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:layout_gravity="center"
-                	android:text="Yolomenyvalg1"
-                	android:textColor="#FFFFFF"
-                	android:textSize="18dp"
-                	android:layout_marginRight="40dp"
-                	/>
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_gravity="center"
+            	    android:layout_marginRight="40dp"
+            	    android:text="Menyvalg 1"
+            	    android:textColor="#FFFFFF"
+            	    android:textSize="18dp" />
 			
 			</LinearLayout>
 		
@@ -124,14 +123,13 @@
             	>
             	
             	<TextView
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:layout_gravity="center"
-                	android:text="Yolomenyvalg1"
-                	android:textColor="#FFFFFF"
-                	android:textSize="18dp"
-                	android:layout_marginRight="40dp"
-                	/>
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_gravity="center"
+            	    android:layout_marginRight="40dp"
+            	    android:text="Menyvalg 2"
+            	    android:textColor="#FFFFFF"
+            	    android:textSize="18dp" />
 			
 			</LinearLayout>
 
