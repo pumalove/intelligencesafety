@@ -1,6 +1,7 @@
 package com.example.intelligencetest.library;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.intelligencetest.R;
@@ -13,17 +14,25 @@ import com.example.scanner.ScanActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ClipData.Item;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -35,21 +44,42 @@ public class Library extends Activity{
 	ChemicalDatasource data;
 	ListView list;
 	boolean succeeded = false;
+	EditText inputSearch;
+	LibraryAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		
-		
 		setContentView(R.layout.library_list_activity);
 		list = (ListView) findViewById(R.id.library_list);
+		list.setTextFilterEnabled(true);
 		data = new ChemicalDatasource();
 		DatabaseOperation dbOper = new DatabaseOperation();
 		dbOper.execute();
 		
-		   String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-	               "iPhone 4S", "Samsung Galaxy Note 800",
-	               "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
+		
+		inputSearch = (EditText) findViewById(R.id.libraryInputSearch);
+		inputSearch.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				Library.this.adapter.getFilter().filter(s);
+			}	
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -60,18 +90,26 @@ public class Library extends Activity{
 				Intent newChemical = new Intent(Library.this, ChemicalActivity.class);
                 newChemical.putExtra("id", chemList.get(arg2).getChemicalId().toString());
                 startActivity(newChemical);
-				
 			}
 		});
 		   
 	}
 	
-	public class LibraryAdapter extends ArrayAdapter<Chemical> {
-
+	public class LibraryAdapter extends ArrayAdapter<Chemical> implements Filterable {
+		
+		private List<Chemical> fitems;
+	    private List<Chemical> original;
+		
+		Context context;
+		List<Chemical> objects;
+	    
 		public LibraryAdapter(Context context, int resource,
 				int textViewResourceId, List<Chemical> objects) {
 			super(context, resource, textViewResourceId, objects);
-			// TODO Auto-generated constructor stub
+			this.fitems = new ArrayList<Chemical>(objects);
+			this.original = new ArrayList<Chemical>(objects);
+			this.context = context;
+			
 		}
 		
 		@Override
@@ -85,7 +123,7 @@ public class Library extends Activity{
 				v = inflater.inflate(R.layout.simple_list_only_text, null);
 			}
 			
-			Chemical chem = getItem(position);
+			Chemical chem = fitems.get(position);
 			
 			if(chem != null) {
 				TextView tv = (TextView) v.findViewById(R.id.product_name);
@@ -95,16 +133,66 @@ public class Library extends Activity{
 			return v;
 		}
 		
+		
+		
+		@Override
+		public Filter getFilter() {
+           Filter filter = new Filter() {
+
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				final FilterResults results = new FilterResults();
+				
+                
+                String prefix = constraint.toString().toLowerCase();
+
+                if (prefix == null || prefix.length() == 0){
+                    ArrayList<Chemical> list = new ArrayList<Chemical>(original);
+                    results.values = list;
+                    results.count = list.size();
+                } else {
+                	final ArrayList<Chemical> list = new ArrayList<Chemical>(original);
+    	            final ArrayList<Chemical> nlist = new ArrayList<Chemical>();
+                	for(int i = 0; i < list.size(); i++) {
+                		Chemical chem = list.get(i);
+                		if(chem.getName().toLowerCase().startsWith(prefix)) {
+                			nlist.add(chem);
+                		}
+                	}
+                	results.count = nlist.size();
+                	results.values = nlist;                	                	
+                }
+
+				return results;
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint,
+					FilterResults results) {
+				
+				fitems = (List<Chemical>) results.values;
+				notifyDataSetChanged();
+				clear();
+				int count = fitems.size();
+		        for(int i = 0; i<count; i++){
+		            add(fitems.get(i));
+		            notifyDataSetInvalidated();
+		        }
+				
+			}
+        	   
+           };
+           return filter;
+		}
 	}
+	
 	
 	public class DatabaseOperation extends AsyncTask<String, Void, String> {
 
-		 
-
+		
 		@Override
 		protected String doInBackground(String... params) {
-			
-			
 			
 			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
              Boolean isInternetPresent = cd.isConnectingToInternet();                    
@@ -141,7 +229,8 @@ public class Library extends Activity{
 			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
              Boolean isInternetPresent = cd.isConnectingToInternet();      	
 			 if(isInternetPresent){
-            	 list.setAdapter(new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList));
+				 adapter = new LibraryAdapter(Library.this, R.layout.simple_list_only_text, R.id.product_name, chemList);
+            	 list.setAdapter(adapter);
              }  
 			
 			
