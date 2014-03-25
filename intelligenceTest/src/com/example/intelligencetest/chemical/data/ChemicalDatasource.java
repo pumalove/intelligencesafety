@@ -61,6 +61,7 @@ public class ChemicalDatasource {
 	      }
 	      catch(JSONException JSONException){
 	       Log.i(LOGTAG , "No data found: + " + JSONException.toString());
+	       
 	      } catch (ParseException parseException) {
 	    	  parseException.printStackTrace();
 	      }
@@ -115,6 +116,7 @@ public class ChemicalDatasource {
 			HttpResponse response = httpclient.execute(httppost);
 			HttpEntity entity = response.getEntity();
 			is = entity.getContent();
+			
 		}catch(Exception e){
 	         Log.e("log_tag", "Error in http connection"+e.toString());
 		}

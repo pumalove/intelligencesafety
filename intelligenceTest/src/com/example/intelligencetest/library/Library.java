@@ -92,6 +92,7 @@ public class Library extends Activity{
                 startActivity(newChemical);
 			}
 		});
+		
 		   
 	}
 	

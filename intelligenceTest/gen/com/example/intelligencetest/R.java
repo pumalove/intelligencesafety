@@ -37,27 +37,30 @@ public final class R {
         public static final int firefighting_fixed=0x7f020005;
         public static final int firstaid_fixed=0x7f020006;
         public static final int gridview_buttons=0x7f020007;
-        public static final int ic_contact_picture=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int ic_navigation_next_item=0x7f02000a;
-        public static final int layout_selector=0x7f02000b;
-        public static final int person_header_circle=0x7f02000c;
-        public static final int sample_0=0x7f02000d;
-        public static final int sample_1=0x7f02000e;
-        public static final int sample_2=0x7f02000f;
-        public static final int sample_3=0x7f020010;
-        public static final int sample_4=0x7f020011;
-        public static final int sample_5=0x7f020012;
-        public static final int sample_6=0x7f020013;
-        public static final int sample_7=0x7f020014;
-        public static final int scrollbar_handle_holo_dark=0x7f020015;
-        public static final int scrollbar_handle_holo_light=0x7f020016;
-        public static final int settings=0x7f020017;
-        public static final int table_selector=0x7f020018;
+        public static final int ic_action_refresh=0x7f020008;
+        public static final int ic_action_refresh2=0x7f020009;
+        public static final int ic_contact_picture=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_navigation_next_item=0x7f02000c;
+        public static final int layout_selector=0x7f02000d;
+        public static final int person_header_circle=0x7f02000e;
+        public static final int sample_0=0x7f02000f;
+        public static final int sample_1=0x7f020010;
+        public static final int sample_2=0x7f020011;
+        public static final int sample_3=0x7f020012;
+        public static final int sample_4=0x7f020013;
+        public static final int sample_5=0x7f020014;
+        public static final int sample_6=0x7f020015;
+        public static final int sample_7=0x7f020016;
+        public static final int scrollbar_handle_holo_dark=0x7f020017;
+        public static final int scrollbar_handle_holo_light=0x7f020018;
+        public static final int settings=0x7f020019;
+        public static final int table_selector=0x7f02001a;
     }
     public static final class id {
         public static final int FAMeasures=0x7f090018;
         public static final int action_settings=0x7f090026;
+        public static final int action_update=0x7f090027;
         public static final int button1=0x7f090013;
         public static final int callEmergencyCell=0x7f090015;
         public static final int chemical_name=0x7f090014;
@@ -114,6 +117,7 @@ public final class R {
     }
     public static final class menu {
         public static final int main=0x7f080000;
+        public static final int person_items=0x7f080001;
     }
     public static final class string {
         public static final int action_settings=0x7f040001;
