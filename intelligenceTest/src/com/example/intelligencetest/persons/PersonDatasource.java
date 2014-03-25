@@ -37,6 +37,9 @@ public class PersonDatasource  {
 		
 	}
 
+	public void clearList(){
+		personList.clear();
+	}
 	
 	//see if the section allready exists
 	public boolean hasSection(char letter) {	
