@@ -98,15 +98,21 @@ public class ChemicalDatasource {
 
 
 	private String getResultFromRequest(String id, String filename, String action) {
-
 		String result = null;
 		StringBuilder sb = null;
 		InputStream is = null;
-
+		String currentRoomId;
+		
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		try{
-			if(id != null) {
+			if(id != null || id.isEmpty() != true) {
 				 nameValuePairs.add(new BasicNameValuePair("chemid", id.trim()));
+			}
+			
+			//if were getting the current room-list, we also need to send the the room id
+			if(action == "crom") {
+				currentRoomId = "1";
+				nameValuePairs.add(new BasicNameValuePair("roomid", currentRoomId));
 			}
 			nameValuePairs.add(new BasicNameValuePair("action", action));
 			
