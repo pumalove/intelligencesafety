@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.intelligencetest.R;
@@ -38,6 +39,16 @@ import com.example.intelligencetest.chemical.data.ChemicalDatasheet;
 		   super();
 	   }
 		
+	   @Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+		   if(getDialog() != null) {
+			   
+			   getDialog().setCanceledOnTouchOutside(true);
+		   }
+		   return super.onCreateView(inflater, container, savedInstanceState);
+		}
+	   
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			LayoutInflater inflater = getActivity().getLayoutInflater();

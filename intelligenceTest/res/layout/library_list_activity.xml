@@ -5,10 +5,10 @@
     android:layout_height="match_parent" 
     android:orientation="vertical">
     
-    <EditText android:id="@+id/libraryInputSearch"
+    <SearchView android:id="@+id/libraryInputSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Search the Library"
+      	android:queryHint="Search the library"
         android:inputType="textVisiblePassword"/>
     
     

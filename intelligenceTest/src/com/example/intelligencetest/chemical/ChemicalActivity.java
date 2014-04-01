@@ -54,7 +54,7 @@ public class ChemicalActivity extends FragmentActivity {
 		
 		DatabaseOperation dbOper = new DatabaseOperation();
 		dbOper.execute();
-
+		
 		
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.firstaid_measures_click);
 		layout.setOnClickListener(new OnClickListener() {
@@ -80,10 +80,13 @@ public class ChemicalActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				ShowFirefightingData dialog = new ShowFirefightingData();
+				
+			
 				dialog.setFireFightingInfo(datasheet.getFireFightingExtinguishingMedia(), 
 						datasheet.getFireFightingSpecialHazards(), 
 						datasheet.getFireFightingAdvice());
 				dialog.show(getSupportFragmentManager(), "firefighting");
+				
 				
 			}
 		});

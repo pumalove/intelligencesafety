@@ -13,7 +13,7 @@
 	<uses-feature android:name="android.hardware.camera.autofocus" />
 	<uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
- 
+ 	<uses-permission android:name="android.permission.CALL_PHONE"/>
     
     <application
         android:allowBackup="true"
@@ -53,17 +53,6 @@
         </activity>
         
         <activity
-            android:name="com.example.intelligencetest.chemical.ui.ShowFirstaidMeasures"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SHOWFIRSTAIDMEASURES" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            
-        </activity>
-        
-        <activity
             android:name="com.example.intelligencetest.library.Library">
             <intent-filter>
                 <action android:name="android.intent.action.SHOWLIBRARY" />
@@ -72,6 +61,7 @@
             </intent-filter>
             
         </activity>
+         
       
     </application>
 

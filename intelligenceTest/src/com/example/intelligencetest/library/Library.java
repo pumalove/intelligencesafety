@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -52,32 +54,35 @@ public class Library extends Activity{
 		super.onCreate(arg0);
 		
 		setContentView(R.layout.library_list_activity);
+		
+		//variables
 		list = (ListView) findViewById(R.id.library_list);
 		list.setTextFilterEnabled(true);
 		data = new ChemicalDatasource();
+		
+		//run the Async Task, for the DB connection
 		DatabaseOperation dbOper = new DatabaseOperation();
 		dbOper.execute();
 		
+		//initiate searchview
+		//make sure its expanded by setting inconified to false
+		//and set listener for when we type in text
+		final SearchView inputSearch = (SearchView) findViewById(R.id.libraryInputSearch);
+		inputSearch.setIconifiedByDefault(false);
 		
-		inputSearch = (EditText) findViewById(R.id.libraryInputSearch);
-		inputSearch.addTextChangedListener(new TextWatcher() {
+		inputSearch.setOnQueryTextListener(new OnQueryTextListener() {
 			
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				Library.this.adapter.getFilter().filter(s);
-			}	
-			
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
+			public boolean onQueryTextSubmit(String query) {
+				InputMethodManager imm=
+					      (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+
+					  imm.hideSoftInputFromWindow(inputSearch.getWindowToken(), 0);
+				return false;
 			}
 			
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
+			public boolean onQueryTextChange(String newText) {
+				Library.this.adapter.getFilter().filter(newText);
+				return false;
 			}
 		});
 		
@@ -86,7 +91,7 @@ public class Library extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Toast.makeText(Library.this, "ID clicked: " + chemList.get(arg2).getName(), Toast.LENGTH_LONG).show();
+				//Toast.makeText(Library.this, "ID clicked: " + chemList.get(arg2).getName(), Toast.LENGTH_LONG).show();
 				Intent newChemical = new Intent(Library.this, ChemicalActivity.class);
                 newChemical.putExtra("id", chemList.get(arg2).getChemicalId().toString());
                 startActivity(newChemical);
@@ -197,7 +202,7 @@ public class Library extends Activity{
 			 ConnectionDetector cd = new ConnectionDetector(getApplicationContext());                    
              Boolean isInternetPresent = cd.isConnectingToInternet();                    
              if(isInternetPresent){
-            	 chemList = data.getListOfChemicals();	
+            	 chemList = data.getListOfChemicals("all");	
              }                    
              if(!isInternetPresent){
 

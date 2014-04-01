@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@color/light_blue">
+	    
+	    <ImageView 
+	        android:layout_width="45dp"
+	        android:layout_height="45dp"
+	        android:src="@drawable/ic_contact_picture"
+	        android:contentDescription="Contact Image"/>
+	    
+	    <TextView 
+	        android:id="@+id/tvShowPersonName"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+	    
+	    
+	</LinearLayout>
+	
+	
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginTop="10dp"
+	    android:layout_marginBottom="10dp">
+	    
+	    
+	    <TextView 
+	        android:id="@+id/tvPersonPhone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Phone"
+	        android:textColor="@color/light_blue"/>
+	    
+	    <TextView 
+	        android:layout_below="@id/tvPersonPhone"
+	        android:id="@+id/tvShowpersonPhone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/black"/>
+	    
+	    <ImageButton
+	        android:id="@+id/imgBtnCallPerson"
+	        android:contentDescription="Call Number"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@android:drawable/ic_menu_call"
+	        android:layout_alignParentRight="true"/>
+	    
+	</RelativeLayout>
+    
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginTop="10dp"
+	    android:layout_marginBottom="10dp">
+	    
+	    
+	    <TextView 
+	        android:id="@+id/tvPersonEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Email"
+	        android:textColor="@color/light_blue"/>
+	    
+	    <TextView 
+	        android:layout_below="@id/tvPersonEmail"
+	        android:id="@+id/tvShowPersonEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/black"/>
+	    
+	    <ImageButton
+	        android:id="@+id/imgBtnSendEmail"
+	        android:contentDescription="Send Emailx'"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@android:drawable/ic_dialog_email"
+	        android:layout_alignParentRight="true"/>
+	    
+	</RelativeLayout>
+</LinearLayout>
+

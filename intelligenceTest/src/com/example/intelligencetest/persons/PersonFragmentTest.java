@@ -7,8 +7,10 @@ import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +18,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applidium.headerlistview.HeaderListView;
 import com.applidium.headerlistview.SectionAdapter;
@@ -28,7 +34,7 @@ import com.example.intelligencetest.chemical.data.ConnectionDetector;
 
 //Jørgen
 
-public class PersonFragmentTest extends Fragment {	
+public class PersonFragmentTest extends Fragment implements SendData {	
 	public static String LOGTAG = "PersonFragment";
 	
 	MyAdapter adapter = new MyAdapter();
@@ -42,6 +48,7 @@ public class PersonFragmentTest extends Fragment {
 	HeaderListView list;
 	
 	public PersonFragmentTest() {
+		//empty constructor
 	}
 	
 	@Override
@@ -54,12 +61,11 @@ public class PersonFragmentTest extends Fragment {
 		DatabaseOperation dbOper = new DatabaseOperation();
 		dbOper.execute();
 		setHasOptionsMenu(true);
-
-				
+		
 		return list;
 	}
-	@Override
 	
+	@Override
 	public void onCreateOptionsMenu(
 	      Menu menu, MenuInflater inflater) {	
 	   inflater.inflate(R.menu.person_items, menu);
@@ -82,6 +88,7 @@ public class PersonFragmentTest extends Fragment {
 	         return super.onOptionsItemSelected(item);
 	   }
 	}
+	
 	public class Refresh extends AsyncTask<String, Void, String> {
 
 		@Override
@@ -140,6 +147,7 @@ public class PersonFragmentTest extends Fragment {
 		
 		
 	}
+
 	
 	public class DatabaseOperation extends AsyncTask<String, Void, String> {
 
@@ -253,7 +261,19 @@ public class PersonFragmentTest extends Fragment {
             return section % 2;
         }
 
+        
+        
         @Override
+		public void onRowItemClick(AdapterView<?> parent, View view,
+				int section, int row, long id) {
+        	Person p = personArray[section][row];
+			ShowPersonInfo personDialog = ShowPersonInfo.newInstance(p);
+			personDialog.show(getFragmentManager(), "personinfo");
+			super.onRowItemClick(parent, view, section, row, id);
+		}
+
+
+		@Override
         public View getSectionHeaderView(int section, View convertView, ViewGroup parent) {
         	Log.i(LOGTAG, "getSectionHeaderView");
             if (convertView == null) {
@@ -266,6 +286,10 @@ public class PersonFragmentTest extends Fragment {
             return convertView;
         }
 	}
-	
 
+	@Override
+	public void sendPersonData(Person p) {
+		Fragment frag = getFragmentManager().findFragmentByTag("personinfo");
+		Log.i(LOGTAG, frag.toString());
+	}
 }

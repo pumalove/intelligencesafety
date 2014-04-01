@@ -69,14 +69,14 @@ public class ChemicalDatasource {
 		return currentChemical;
 	}
 	
-	public List<Chemical> getListOfChemicals() {
+	public List<Chemical> getListOfChemicals(String action) {
 		
 		JSONArray jArray;
 		List<Chemical> list = new ArrayList<Chemical>();
 		
 		try {
 			String filename = "ica.php";
-			String result = getResultFromRequest(null, filename, "all");
+			String result = getResultFromRequest(null, filename, action);
 			JSONArray array = new JSONArray(result);
 			JSONObject object = array.getJSONObject(0);
 			jArray = object.getJSONArray("chem");
