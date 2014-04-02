@@ -7,8 +7,10 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
 import net.sourceforge.zbar.ImageScanner;
@@ -53,6 +55,9 @@ public class ZBarScannerActivity extends Activity implements Camera.PreviewCallb
         setContentView(mPreview);
     }
 
+    
+   
+    
     public void setupScanner() {
         mScanner = new ImageScanner();
         mScanner.setConfig(0, Config.X_DENSITY, 3);
@@ -146,7 +151,7 @@ public class ZBarScannerActivity extends Activity implements Camera.PreviewCallb
                     break;
                 }
             }
-        }
+        } 
     }
     private Runnable doAutoFocus = new Runnable() {
         public void run() {

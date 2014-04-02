@@ -11,7 +11,6 @@ public class Person {
 	String email;
 	int id;
 
-
 	public Person(int id, String firstname, String lastname, String email,
 			String img, String phone) {
 		this.id = id;

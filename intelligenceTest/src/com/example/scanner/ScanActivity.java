@@ -99,6 +99,9 @@ public class ScanActivity extends Activity {
                     if(!TextUtils.isEmpty(error)) {
                         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
                     }
+                } else if(resultCode == RESULT_CANCELED) {	
+                	Toast.makeText(this, "Back button was pressed", Toast.LENGTH_SHORT).show();
+                	finish();
                 }
                 break;
         }

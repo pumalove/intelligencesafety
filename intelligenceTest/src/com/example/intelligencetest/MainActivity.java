@@ -6,7 +6,10 @@ import java.util.Locale;
 import com.example.intelligencetest.persons.PersonFragmentTest;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -38,11 +41,21 @@ public class MainActivity extends FragmentActivity implements
 	ViewPager mViewPager;
 	
 	
+	//requestCode for login
+	static final int LOGIN_REQUEST = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		//if user isnt logged in
+		//go to login screen
+		
+		startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), LOGIN_REQUEST);
+		//finish();
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -78,6 +91,25 @@ public class MainActivity extends FragmentActivity implements
 			actionBar.addTab(actionBar.newTab()
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == LOGIN_REQUEST) {
+			if(resultCode != RESULT_OK) {
+				//something went wrong with the login, send them back to login screen
+				finish();
+			} else if(resultCode == RESULT_OK) {
+			  SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+           	  SharedPreferences.Editor editor = preferences.edit();
+           	  editor.putString("Username", data.getStringExtra("username"));
+           	  editor.putString("Password", data.getStringExtra("password"));
+           	  editor.commit();
+			}
 		}
 	}
 
